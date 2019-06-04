@@ -36,6 +36,14 @@ def show
   @article = Article.find(params[:id])
 end
 
+def destroy
+  @article = Article.find(params[:id])
+  if @article.destroy
+    flash[:notice] = "Article was successfully destroyed, boom"
+    redirect_to articles_path
+  end
+end
+
 private
 def article_params
   params.require(:article).permit(:title,:description)
